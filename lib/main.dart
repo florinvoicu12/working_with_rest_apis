@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rest_apis/services/notes_service.dart';
-import 'package:flutter_app_rest_apis/views/note_list.dart';
-import 'package:get_it/get_it.dart';
-
-void setupLocator() {
-  GetIt.instance.registerLazySingleton(() => NotesService());
-}
 
 void main() {
-  setupLocator();
   runApp(const MyApp());
 }
 
@@ -20,10 +12,39 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: NoteList(),
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.green,
+            child: Icon(Icons.account_box),
+          ),
+        ),
+        title: Text("Rest"),
+        actions: [
+          Container(
+            width: 50,
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(12))),
+          )
+        ],
+      ),
     );
   }
 }
